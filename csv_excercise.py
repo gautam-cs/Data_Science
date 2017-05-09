@@ -1,8 +1,6 @@
 import pandas as pd
-import csv
 
 def add_full_name(path_to_csv, path_to_new_csv):
-    print("ok")
     #Assume you will be reading in a csv file with the same columns that the
     #Lahman baseball data set has -- most importantly, there are columns
     #called 'nameFirst' and 'nameLast'.
@@ -17,12 +15,13 @@ def add_full_name(path_to_csv, path_to_new_csv):
 	#path_to_new_csv
 
     #WRITE YOUR CODE HERE
-    path_to_new_csv=pd.concat([path_to_csv,path_to_new_csv],join='outer')
-    print(path_to_new_csv)
+    dataframe=pd.read_csv(path_to_csv)
+    dataframe['nameFull']=dataframe['nameFirst']+' '+dataframe['nameLast']
+    dataframe.to_csv(path_to_new_csv)
+
     # print(path_to_csv.namefirst)
     # grouped = path_to_new_csv.groupby(['path_to_csv.namefirst', 'path_to_csv.lastfirst'], as_index=False).sum()
-
-
+    return 0
 
 
 
@@ -32,10 +31,9 @@ if __name__ == "__main__":
     # Lahman baseball csv and a path for the new csv.
     # The dataset can be downloaded from this website: http://www.seanlahman.com/baseball-archive/statistics
     # We are using the file Master.csv
-    path_to_csv = pd.read_csv('name.csv')
-    path_to_new_csv=pd.read_csv('new_name.csv')
+    path_to_csv = 'baseballdatabank-master/core/Master.csv'
+    path_to_new_csv='baseballdatabank-master/core/Master.csv'
     add_full_name(path_to_csv, path_to_new_csv)
-
 
 
 
